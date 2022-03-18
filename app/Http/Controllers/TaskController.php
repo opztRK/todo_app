@@ -11,7 +11,7 @@ class TaskController extends Controller
 
     public function top()
     {
-        return 'hellowordl';
+        return view('tasks/index');
     }
 
     public function index()
