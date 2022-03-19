@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Folder;
+
 use Illuminate\Http\Request;
+use App\Models\Folder;
 
 class TaskController extends Controller
 {
@@ -19,7 +20,7 @@ class TaskController extends Controller
         $folders = Folder::all();
 
         return view('tasks/index',[
-            'folders' => $folders,
+            'folders' => $folders
         ]);
     }
 
