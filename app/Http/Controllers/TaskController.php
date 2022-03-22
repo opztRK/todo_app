@@ -15,12 +15,13 @@ class TaskController extends Controller
         return view('tasks/index');
     }
 
-    public function index()
+    public function index(int $id)
     {
         $folders = Folder::all();
 
         return view('tasks/index',[
-            'folders' => $folders
+            'folders' => $folders,
+            'current_folder_id' => $id,
         ]);
     }
 
