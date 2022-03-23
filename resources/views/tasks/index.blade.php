@@ -35,6 +35,13 @@
                         </div>
                     </nav>
                 </div>
+                @foreach($folders as $folder)
+                <div>
+                @foreach($folder as $value)
+                <p> 値 {{$value}}</p>
+                @endforeach
+                </div>
+                @endforeach
                 <div class="columun col-md-8">
                     <!-- タスク表示 -->
                 </div>
