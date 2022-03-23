@@ -37,7 +37,7 @@
                 </div>
                 @foreach($folders as $folder)
                 <div>
-                <p> {{var_dump($folder)}}</p>
+                <p> {{$folder}}</p>
                 </div>
                 @endforeach
                 <div class="columun col-md-8">
