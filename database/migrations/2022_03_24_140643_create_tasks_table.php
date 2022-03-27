@@ -17,9 +17,9 @@ class CreateTasksTable extends Migration
             $table->bigincrements('id');
             $table->integer('folder_id')->unsigned();
             $table->string('title',100);
-            $table->integer('status')->default(1);
             $table->date('due_date');
-            $table->timestamp('created_at');
+            $table->integer('status')->default(1);
+            $table->timestamps();
 
             //外部キーの設定 references→参照はid    on→テーブルはfolders 
             $table->foreign('folder_id')->references('id')->on('folders');
