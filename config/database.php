@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    // 'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +35,13 @@ return [
     */
 
     'connections' => [
+        //PCメモリ上のDBを使ってテスト
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
+        //ここまで
 
         'sqlite' => [
             'driver' => 'sqlite',
