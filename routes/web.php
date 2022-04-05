@@ -16,18 +16,16 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-// Route::get('/','PlayersController@index');
-// Route::get('/index','PlayersController@index');
-//Todolist用
-// Route::get('todolist', 'TodolistController@index');
-// Route::get('todolist/create', 'TodolistController@create');
-// Route::post('todolist', 'TodolistController@store');
-// Route::get('todolist/{id}', 'TodolistController@show');
-// Route::get('todolist/{id}/edit', 'TodolistController@edit');
-// Route::put('todolist/{id}', 'TodolistController@update');
-// Route::delete('todolist/{id}', 'TodolistController@destroy');
-//２つめのTodoListチュートリアル用
-Route::get('/','TaskController@top');
+
+
+//初期→Route::get('/','TaskController@top');
+
+//会員登録TOP
+Route::get('/','HomeController@index')->name('home');
+//認証メソッド
+Auth::routes(); //会員登録・ログイン・ログアウト・パス再設定の各機能で必要なルーティングすべてを定義
+
+//インデックス
 Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
 //フォルダ作成
 Route::get('/folders/create','FolderController@showCreateForm')->name('folders.create');
@@ -36,5 +34,5 @@ Route::post('/folders/create','FolderController@create');
 Route::get('/folders/{id}/tasks/create','TaskController@showCreateForm')->name('tasks.create');
 Route::post('/folders/{id}/tasks/create','TaskController@create');
 //編集機能
-Route::get('/folders/{id}/tasks/{task_id}/edit','TaskController@showEditForm')->name('task.edit');
+Route::get('/folders/{id}/tasks/{task_id}/edit','TaskController@showEditForm')->name('tasks.edit');
 Route::post('/folders/{id}/tasks/{task_id}/edit','TaskController@edit');

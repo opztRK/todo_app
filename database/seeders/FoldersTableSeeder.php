@@ -9,22 +9,26 @@ use App\Models\Folder;
 
 class FoldersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $titles = ['重要＆至急','至急','重要','その他'];
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    //リレーション用に追加
+    $user = DB::table('users')->first();
 
-        foreach($titles as $title){
-            DB::table('folders')->insert([
-                'title' => $title,
-                'created_at'=> Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
-        }
-        //
+    $titles = ['重要＆至急', '至急', '重要', 'その他'];
+
+    foreach ($titles as $title) {
+      DB::table('folders')->insert([
+        'title' => $title,
+        'user_id' => $user->id,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+      ]);
     }
+    //
+  }
 }

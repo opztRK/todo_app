@@ -19,6 +19,11 @@ class CreateFoldersTable extends Migration
             $table->increments('id');
             $table->string('title',20);
             $table->timestamps();
+
+            // //追加
+            // $table->integer('user_id')->unsigned();
+
+            // $table->foreign('user_id')->references('id')->on('users');
         });
         
 
