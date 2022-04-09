@@ -21,23 +21,32 @@ use Illuminate\Support\Facades\Auth;
 
 //初期→Route::get('/','TaskController@top');
 
-//会員登録TOP
-Auth::routes(); //会員登録・ログイン・ログアウト・パス再設定の各機能で必要なルーティングすべてを定義
+//会員登録(register)・ログイン(post:login)・ログアウト(post:logout)・パス再設定の各機能で必要なルーティングすべてを定義
+Auth::routes(); 
 
-Route::get('/','HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'],function(){
+  
+  //TOP
+  Route::get('/','HomeController@index')->name('home');
+  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+  //インデックス
+  Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
+  
+  //フォルダ作成
+  Route::get('/folders/create','FolderController@showCreateForm')->name('folders.create');
+  Route::post('/folders/create','FolderController@create');
+  
+  //タスク作成
+  Route::get('/folders/{id}/tasks/create','TaskController@showCreateForm')->name('tasks.create');
+  Route::post('/folders/{id}/tasks/create','TaskController@create');
+  
+  //編集機能
+  Route::get('/folders/{id}/tasks/{task_id}/edit','TaskController@showEditForm')->name('tasks.edit');
+  Route::post('/folders/{id}/tasks/{task_id}/edit','TaskController@edit');
+});
+
+
+Auth::routes();
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//認証メソッド
-
-//インデックス
-Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
-//フォルダ作成
-Route::get('/folders/create','FolderController@showCreateForm')->name('folders.create');
-Route::post('/folders/create','FolderController@create');
-//タスク作成
-Route::get('/folders/{id}/tasks/create','TaskController@showCreateForm')->name('tasks.create');
-Route::post('/folders/{id}/tasks/create','TaskController@create');
-//編集機能
-Route::get('/folders/{id}/tasks/{task_id}/edit','TaskController@showEditForm')->name('tasks.edit');
-Route::post('/folders/{id}/tasks/{task_id}/edit','TaskController@edit');
-
-

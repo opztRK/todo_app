@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Folder;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -19,8 +20,10 @@ class TaskController extends Controller
 
   public function index(int $id)
   {
-    // すべてのフォルダを取得する
-    $folders = Folder::all();
+
+
+    // ユーザーのすべてのフォルダを取得する
+    $folders = Auth::user()->folders()->get();
 
     // 選ばれたフォルダを取得する  
     $current_folder = Folder::find($id);
